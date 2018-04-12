@@ -1,0 +1,50 @@
+https://www.digitalocean.com/community/tutorials/how-to-run-nginx-in-a-docker-container-on-ubuntu-14-04#(optional)-step-4-%E2%80%94-learning-how-to-run-in-detached-mode
+
+
+Docker 1
+
+
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                       NAMES
+cbdf8b880853        nginx               "nginx -g 'daemon of…"   5 seconds ago       Up 5 seconds        192.168.19.120:80->80/tcp   nginx-site3
+ea622ba7f761        nginx               "nginx -g 'daemon of…"   6 minutes ago       Up 6 minutes        192.168.19.118:80->80/tcp   nginx-site1
+cf94084ce63d        nginx               "nginx -g 'daemon of…"   15 minutes ago      Up 15 minutes       192.168.19.119:80->80/tcp   nginx-site2
+root@ubsrv16:/etc/network#
+
+
+
+Bknd
+
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                         NAMES
+ca5c1f8ecedb        nginx               "nginx -g 'daemon of…"   23 minutes ago      Up 13 minutes       192.168.18.253:80->80/tcp     docker-upstream2
+1879046cfb4b        nginx               "nginx -g 'daemon of…"   23 minutes ago      Up 23 minutes       192.168.18.252:80->80/tcp     docker-upstream1
+e820fb1a56e1        nginx               "nginx -g 'daemon of…"   30 minutes ago      Up 30 minutes       192.168.18.251:8080->80/tcp   docker-search1
+69b60c3a098d        nginx               "nginx -g 'daemon of…"   32 minutes ago      Up 32 minutes       192.168.18.251:80->80/tcp     docker-web1
+
+
+
+status
+
+CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                          NAMES
+eaff800622d3        cachetdocker_cachet   "/sbin/entrypoint.sh"    2 hours ago         Up 2 hours          80/tcp, 0.0.0.0:80->8000/tcp   cachetdocker_cachet_1
+1c15f25d991a        postgres:9.5          "docker-entrypoint.s…"   2 hours ago         Up 2 hours          5432/tcp                       cachetdocker_postgres_1
+
+
+
+
+
+Login container :
+
+docker exec -it docker-upstream2 bash
+
+List stopped container :
+docker ps -f "status=exited"
+
+logs :
+docker container logs  docker-upstream2
+
+docker images -a
+remove image : docker rmi Image
+
+docker ps
+container delete : docker rm container
+
